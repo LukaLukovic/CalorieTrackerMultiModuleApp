@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "CalorieTrackerMultiModuleApp"
+include ':app'
+include ':core'
+include ':onBoarding'
+include ':onBoarding:onBoardingPresentation'
+include ':onBoarding:onBoardingDomain'
+include ':Tracker'
+include ':Tracker:TrackerDomain'
+include ':Tracker:TrackerData'
+include ':Tracker:TrackerPresentation'
+include ':core-ui'
