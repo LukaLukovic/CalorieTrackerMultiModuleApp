@@ -112,7 +112,8 @@ class MainActivity : ComponentActivity() {
                             TrackerOverviewScreen(
                                 onNavigateToSearch = { mealName, day, month, year ->
                                     navController.navigate(
-                                        Route.SEARCH + "/$mealName" +
+                                        Route.SEARCH +
+                                                "/$mealName" +
                                                 "/$day" +
                                                 "/$month" +
                                                 "/$year"

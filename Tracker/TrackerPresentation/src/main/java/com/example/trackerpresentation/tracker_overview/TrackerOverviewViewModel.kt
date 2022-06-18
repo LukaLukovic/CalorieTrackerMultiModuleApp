@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,6 +33,11 @@ class TrackerOverviewViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
     init {
         refreshFoods()
+        println("wtff")
+        val result = useCases.getFoodsForDate(LocalDate.now())
+        result.onEach {
+            println(it.toString() + "yoo??")
+        }
         preferences.saveShouldShowOnBoarding( false)
     }
 
@@ -85,18 +91,20 @@ class TrackerOverviewViewModel @Inject constructor(
                     caloriesGoal = nutrientsResult.caloriesGoal,
                     trackedFoods = foods,
                     meals = state.meals.map {
-                        val nutrientsForMeal = nutrientsResult.MealNutrients[it.mealType]
-                            ?: return@map it.copy(
-                                carbs = 0,
-                                protein = 0,
-                                fat = 0,
-                                calories = 0,
-                            )
+                        val nutrientsForMeal
+                             = nutrientsResult.MealNutrients[it.mealType]
+                                ?: return@map it.copy(
+                                    carbs = 0,
+                                    protein = 0,
+                                    fat = 0,
+                                    calories = 0,
+                                )
                         it.copy(
                             carbs = nutrientsForMeal.carbs,
                             fat = nutrientsForMeal.fat,
                             protein = nutrientsForMeal.protein,
-                            calories = nutrientsForMeal.calories
+                            calories = nutrientsForMeal.calories,
+                            mealType = nutrientsForMeal.mealType
                         )
                     }
                 )

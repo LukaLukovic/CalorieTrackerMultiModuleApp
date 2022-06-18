@@ -8,6 +8,7 @@ import java.time.LocalDate
 
 fun TrackedFoodEntity.toTrackedFood(): TrackedFood {
 
+
     return TrackedFood(
         name = name,
         carbs = carbs,

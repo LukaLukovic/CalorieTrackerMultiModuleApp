@@ -40,6 +40,4 @@ val defaultMeals = listOf(
         mealType = MealType.Snack
     ),
 
-
-
 )
